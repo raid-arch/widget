@@ -6,7 +6,7 @@ Android 8.0以降向け、端末内保存の授業・提出物・予定アプリ
 
 Android SDK 35、JDK 17、Gradle 8.9を用意し、`gradle :app:assembleDebug :app:lintDebug` を実行します。Android Studioではこのフォルダを開いてSDKの場所を設定できます。
 APK出力: `app/build/outputs/apk/debug/app-debug.apk`。
-GitHubに配置する場合は、Actionsの **Build APK → Run workflow** から同じビルドを実行できます。ワークフローは手動のみで、公開・リリースは行いません。debug APKは試用向けです。継続配布時は同じ署名鍵を保存してrelease署名を設定してください。GitHub Actionsのdebug署名鍵は実行ごとに変わり得るため、更新インストール用途には固定鍵が必要です。
+GitHubに配置する場合は、Actionsの **Build APK → Run workflow** から同じビルドを実行できます。mainへのpushまたは手動実行でビルドし、リリース公開は行いません。debug APKは試用向けです。継続配布時は同じ署名鍵を保存してrelease署名を設定してください。GitHub Actionsのdebug署名鍵は実行ごとに変わり得るため、更新インストール用途には固定鍵が必要です。
 
 ## 使い方
 
