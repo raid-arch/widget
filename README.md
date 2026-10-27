@@ -22,5 +22,5 @@ GitHubに配置する場合は、Actionsの **Build APK → Run workflow** か�
 
 ## 確認状況
 
-この環境ではAndroid SDKとGradleが未導入で、SDK取得もプロキシへの接続エラーとなったため、APKビルド・Android Lint・実機動作は未確認です。XML整形式の静的検査のみ実施。
+SDK 35・Gradle 8.9で `:app:assembleDebug :app:lintDebug` が成功。Lintエラー0。実機動作は未確認です。
 実機では通知許可・再起動後の予約・時刻変更・提出物の編集/完了・ウィジェット操作・不正JSONの拒否と保存データ維持を確認してください。
