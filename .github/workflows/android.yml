@@ -17,7 +17,15 @@ jobs:
       - name: Prepare Android SDK
         shell: bash
         run: |
-          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+          sdk_root="$RUNNER_TEMP/schoolboard-sdk"
+          mkdir -p "$sdk_root/cmdline-tools"
+          curl --fail --location --retry 3 https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -o "$RUNNER_TEMP/sdk.zip"
+          unzip -q "$RUNNER_TEMP/sdk.zip" -d "$sdk_root/cmdline-tools"
+          mv "$sdk_root/cmdline-tools/cmdline-tools" "$sdk_root/cmdline-tools/latest"
+          printf 'y\ny\ny\ny\ny\ny\ny\ny\ny\ny\n' | "$sdk_root/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$sdk_root" --licenses > /dev/null
+          "$sdk_root/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$sdk_root" "platforms;android-35" "build-tools;34.0.0"
+          echo "ANDROID_HOME=$sdk_root" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$sdk_root" >> "$GITHUB_ENV"
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
